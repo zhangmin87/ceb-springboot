@@ -1,0 +1,38 @@
+#Server setting (ServerProperties)
+server:
+  port: 8080
+  sessionTimeout: 30
+
+# 默认配置
+spring:
+  profiles:
+    active: local
+
+# dataSourc（先用mysql 测试）
+datasource:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost/test
+  username: root
+  password : 123
+
+#jpa   setting
+jpa:
+   database: mysql
+   show-sql: true
+   properties:
+         hibernate:
+           dialect: org.hibernate.dialect.MySQL5Dialect
+
+  # thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/thymeleaf
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+    mode: HTML5
+    encoding: utf-8
+    content-type: text/html
+
+   # Mybatis setting
+   mybatis:
+     config-location:
+
