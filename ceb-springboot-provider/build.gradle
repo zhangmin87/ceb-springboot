@@ -57,7 +57,7 @@ dependencies {
     compile "com.github.pagehelper:pagehelper:4.1.6"
     compile "com.github.jsqlparser:jsqlparser:0.9.6"
     //dubbo
-    compile "com.alibaba.spring.boot:dubbo-spring-boot-starter:2.5.9 "
+    compile "com.alibaba.spring.boot:dubbo-spring-boot-starter:1.0.2"
     compile "com.alibaba:dubbo:2.5.9"
     compile "com.github.sgroschupf:zkclient:0.1"
     compile('mysql:mysql-connector-java')

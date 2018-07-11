@@ -3,12 +3,12 @@ server:
   port: 8080
   sessionTimeout: 30
 
-# 默认配置
+# 默锟斤拷锟斤拷锟斤拷
 spring:
   profiles:
     active: local
 
-# dataSourc（先用mysql 测试）
+# dataSourc锟斤拷锟斤拷锟斤拷mysql 锟斤拷锟皆ｏ拷
 datasource:
   driver-class-name: com.mysql.jdbc.Driver
   url: jdbc:mysql://localhost/test
@@ -25,12 +25,13 @@ jpa:
 
   # thymeleaf
   thymeleaf:
-    prefix: classpath:/templates/thymeleaf
-    #开发时关闭缓存,不然没法看到实时页面
+    prefix: classpath:/templates/thymeleaf/
+    #寮�鍙戞椂鍏抽棴缂撳瓨,涓嶇劧娌℃硶鐪嬪埌瀹炴椂椤甸潰
     cache: false
     mode: HTML5
     encoding: utf-8
     content-type: text/html
+
 
    # Mybatis setting
    mybatis:
