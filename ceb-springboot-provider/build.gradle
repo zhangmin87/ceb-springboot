@@ -36,6 +36,9 @@ jar {
 }
 
 dependencies {
+
+    //依赖ceb-springboot-provider中的API
+    compile(":ceb-springboot-api")
     //mq
     compile('org.springframework.boot:spring-boot-starter-activemq')
     compile "org.springframework:spring-jms"

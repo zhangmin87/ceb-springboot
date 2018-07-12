@@ -1,4 +1,4 @@
-package com.ceb.cebspringbootapi.system.DTO;
+package com.ceb.system.DTO;
 
 /**
  * 学生类（测试）

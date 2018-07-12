@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ceair.cbec.datacenter.system.mapper.RoleMapper">
+
+    <resultMap id="RoleRM" type="com.ceair.cbec.datacenter.system.dto.RoleDTO">
+        <result property="roleId" column="ROLE_ID"/>
+        <result property="roleName" column="ROLE_NAME"/>
+        <result property="roleDesc" column="ROLE_DESC"/>
+        <result property="systemCode" column="SYSTEM_CODE"/>
+    </resultMap>
+
+    <sql id="paginationSql" >
+        SELECT
+        r.*
+        FROM
+        T_SYS_ROLE r
+        WHERE 1 = 1
+        <if test='queryDTO.roleName != null and queryDTO.roleName != "" '>
+            AND r.role_name LIKE '%'|| #{queryDTO.roleName, jdbcType=VARCHAR} || '%'
+        </if>
+        <if test='queryDTO.systemCode != null and queryDTO.systemCode != "" '>
+            AND r.system_code = #{queryDTO.systemCode, jdbcType=VARCHAR}
+        </if>
+    </sql>
+
+    <select id="select" resultMap="RoleRM">
+		SELECT
+		r.*
+		FROM
+		T_SYS_ROLE r
+		WHERE r.role_id = #{roleId, jdbcType=INTEGER}
+	</select>
+
+    <select id="queryRoles" resultMap="RoleRM">
+        <include refid="paginationSql"></include>
+        ORDER BY r.role_id
+    </select>
+
+    <select id="queryRolesCount" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*)
+        FROM (
+        <include refid="paginationSql"></include>
+        )
+    </select>
+
+    <select id="queryRolesWithPagination" resultMap="RoleRM">
+        SELECT result.* FROM (
+        SELECT row_.*, rownum rownum_
+        FROM (
+        <include refid="paginationSql"></include>
+        <choose>
+            <when test='paginationDTO.sortAppendOrderBy != null and queryDTO.sortAppendOrderBy != "" '>
+                ORDER BY #{paginationDTO.sortAppendOrderBy, jdbcType=VARCHAR}
+            </when>
+            <otherwise>
+                ORDER BY r.role_id
+            </otherwise>
+        </choose>
+        ) row_
+        ) result
+        <![CDATA[
+		  WHERE rownum_ <= #{paginationDTO.endIndex, jdbcType=DECIMAL}
+		   and rownum_ > #{paginationDTO.offset, jdbcType=DECIMAL}
+		]]>
+    </select>
+
+    <!-- 删除 -->
+    <delete id="deleteRoleMenus" parameterType="java.lang.Long">
+		DELETE FROM T_SYS_ROLE_MENU rm WHERE rm.role_id = #{roleId}
+	</delete>
+
+    <!-- 删除 -->
+    <delete id="deleteRolePermissions" parameterType="java.lang.Long">
+		DELETE FROM T_SYS_ROLE_PERMISSION rp WHERE rp.role_id = #{roleId}
+	</delete>
+
+    <insert id="insertRoleMenus" parameterType="java.util.List">
+        INSERT INTO T_SYS_ROLE_MENU (rec_id, role_id, menu_id)
+        SELECT SEQ_T_SYS_COMMON.NEXTVAL, A.* FROM (
+        <foreach collection="dtos" item="item" index="index" separator="UNION ALL">
+            SELECT
+            #{item.roleId}, #{item.menuId}
+            FROM dual
+        </foreach>
+        ) A
+    </insert>
+
+    <insert id="insertRolePermissions" parameterType="java.util.List">
+        INSERT INTO T_SYS_ROLE_PERMISSION (rec_id, role_id, permission_id)
+        SELECT SEQ_T_SYS_COMMON.NEXTVAL, A.* FROM (
+        <foreach collection="dtos" item="item" index="index" separator="UNION ALL">
+            SELECT
+            #{item.roleId}, #{item.permissionId}
+            FROM dual
+        </foreach>
+        ) A
+    </insert>
+
+    <select id="getMenuIds" resultType="java.lang.Long">
+		SELECT rm.menu_id FROM T_SYS_ROLE r JOIN T_SYS_ROLE_MENU rm ON r.role_id = rm.role_id
+			WHERE r.role_id = #{queryDTO.roleId}
+			AND r.system_code = #{queryDTO.systemCode}
+	</select>
+
+    <select id="getPermissionIds" resultType="java.lang.Long">
+		SELECT rp.permission_id FROM T_SYS_ROLE r JOIN T_SYS_ROLE_PERMISSION rp ON r.role_id = rp.role_id
+			WHERE r.role_id = #{queryDTO.roleId}
+			AND r.system_code = #{queryDTO.systemCode}
+	</select>
+</mapper>

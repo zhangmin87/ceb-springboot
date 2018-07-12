@@ -1,4 +1,4 @@
-package com.ceb.cebspringbootapi;
+package com.ceb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
