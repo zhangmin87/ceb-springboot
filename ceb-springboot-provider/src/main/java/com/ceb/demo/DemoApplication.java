@@ -1,12 +1,12 @@
-package com.ceb;
+package com.ceb.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-public class CebProviderApplication {
+@SpringBootApplication
+public class DemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CebProviderApplication.class, args);
+        SpringApplication.run(DemoApplication.class, args);
     }
 }

@@ -1,4 +1,4 @@
-rootProject.name = 'ceb'
+rootProject.name = 'ceb-springboot'
 include 'ceb-springboot-admin-webapp'
 include 'ceb-springboot-provider'
 include 'ceb-springboot-api'

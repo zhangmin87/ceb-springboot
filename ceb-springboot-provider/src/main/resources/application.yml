@@ -2,48 +2,52 @@
 server:
   port: 8080
   sessionTimeout: 30
-
-# Ĭ������
+# dddddd
 spring:
   profiles:
     active: local
+  datasource:
+    url : jdbc:mysql://localhost:3306/cbb
+    username : cbb
+    password : cbb
+    driverClassName : com.mysql.jdbc.Driver
 
-# dataSourc������mysql ���ԣ�
-datasource:
-  driver-class-name: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost/test
-  username: root
-  password : 123
+# 、、dataSourc������mysql ���ԣ�
+#datasource:
+#  driver-class-name: com.mysql.jdbc.Driver
+#  url: jdbc:mysql://127.0.0.1:3306/cbb?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+#  username: cbb
+#  password : cbb
 
 #jpa   setting
-jpa:
-   database: mysql
-   show-sql: true
-   properties:
-         hibernate:
-           dialect: org.hibernate.dialect.MySQL5Dialect
+#jpa:
+#   database: mysql
+#   show-sql: true
+#   properties:
+#         hibernate:
+#           dialect: org.hibernate.dialect.MySQL5Dialect
 
   # thymeleaf
-  thymeleaf:
-    prefix: classpath:/templates/thymeleaf/
-    #开发时关闭缓存,不然没法看到实时页面
-    cache: false
-    mode: HTML5
-    encoding: utf-8
-    content-type: text/html
+thymeleaf:
+  prefix: classpath:/templates/
+  #开发时关闭缓存,不然没法看到实时页面
+  cache: false
+  mode: HTML5
+  encoding: utf-8
+  content-type: text/html
 
 
    # Mybatis setting
-   mybatis:
-     config-location: classpath:mybatis/mybatis-config.xml
-     mapper-location: classpath:mybatis/mapper/**/*.xml
+mybatis:
+ config-location: classpath:mybatis/mybatis-config.xml
+ mapper-location: classpath:mybatis/mapper/**/*.xml
 
-   # Dubbo setting
-   dubbo:
-     appname: ceb-springboot-provider
-     registry: zookeeper://127.0.0.1:2181
-     protocol: dubbo
-     port: 20800
-     threads: 200
+# Dubbo setting
+dubbo:
+ appname: ceb-springboot-provider
+ registry: zookeeper://127.0.0.1:2181
+ protocol: dubbo
+ port: 20800
+ threads: 200
 
 
