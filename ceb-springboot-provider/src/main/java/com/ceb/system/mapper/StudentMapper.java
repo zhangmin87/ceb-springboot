@@ -1,8 +1,8 @@
 package com.ceb.system.mapper;
 
+import com.ceb.system.DTO.StudentDTO;
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
 public interface StudentMapper {
-    String select();
+    StudentDTO get();
 }
