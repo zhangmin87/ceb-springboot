@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableDubboConfiguration
 public class CebSpringbootAdminApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(CebSpringbootAdminApplication.class,args);
     }

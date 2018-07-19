@@ -4,7 +4,8 @@
 server:
   port: 8088
   sessionTimeout: 30
-
+  servlet:
+    context-path: /cebsprigboot
   # thymeleaf
 thymeleaf:
   prefix: classpath:/templates/
@@ -17,6 +18,7 @@ thymeleaf:
 #spring
 spring:
   dubbo:
+       appname: ceb-springboot-admin-webapp
        registry: zookeeper://127.0.0.1:2181
        protocol: dubbo
        port: 20800
