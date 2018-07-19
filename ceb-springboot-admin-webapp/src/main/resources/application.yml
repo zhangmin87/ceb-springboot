@@ -1,0 +1,23 @@
+# application.yaml
+
+# Server settings (ServerProperties)
+server:
+  port: 8088
+  sessionTimeout: 30
+
+  # thymeleaf
+thymeleaf:
+  prefix: classpath:/templates/
+  #开发时关闭缓存,不然没法看到实时页面
+  cache: false
+  mode: HTML5
+  encoding: utf-8
+  content-type: text/html
+
+#spring
+spring:
+  dubbo:
+       registry: zookeeper://127.0.0.1:2181
+       protocol: dubbo
+       port: 20800
+       threads: 200

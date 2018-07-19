@@ -13,8 +13,7 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentMapper mapper;
 
-
-            @Override
+    @Override
     public StudentDTO getStudent() {
         StudentDTO student =  mapper.get();
         return student;

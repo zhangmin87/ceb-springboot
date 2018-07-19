@@ -11,7 +11,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
@@ -43,14 +42,15 @@ dependencies {
     compile "com.github.jsqlparser:jsqlparser:0.9.6"
     //dubbo
     compile "com.alibaba.spring.boot:dubbo-spring-boot-starter:1.0.2"
+    compile "com.alibaba:dubbo:2.5.9"
 //    //zk
     compile ("org.apache.zookeeper:zookeeper:3.4.6") {
          exclude group: 'org.slf4j'
     }
 
     // zkclient:0.1已经包含了log4j：1.2.17引发冲突
-//    compile  ("com.github.sgroschupf:zkclient:0.1") {
-//        exclude group: 'org.slf4j'
-//    }
+    compile  ("com.github.sgroschupf:zkclient:0.1") {
+        exclude group: 'org.slf4j'
+    }
 
 }

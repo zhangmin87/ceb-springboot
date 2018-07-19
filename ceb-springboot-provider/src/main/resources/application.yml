@@ -12,13 +12,19 @@ spring:
     username : cbb
     password : cbb
     driverClassName : com.mysql.jdbc.Driver
-#jpa   setting
+    #jpa   setting
   jpa:
    database: mysql
    show-sql: true
    properties:
          hibernate:
            dialect: org.hibernate.dialect.MySQL5Dialect
+  dubbo:
+   appname: cbec-inbound-application
+   registry: zookeeper://127.0.0.1:2181
+   protocol: dubbo
+   port: 20800
+   threads: 200
 
   # thymeleaf
 thymeleaf:
@@ -33,15 +39,6 @@ thymeleaf:
    # Mybatis setting
 mybatis:
    config-location: classpath:mybatis/mybatis-config.xml
-
    ## 目前不知道什么原因，mapper-locations 这种方式不能加载xml 文件
    mapperLocations: classpath:mybatis/mapper/system/StudentMapper.xml
-# Dubbo setting
-dubbo:
-   appname: ceb-springboot-provider
-   registry: zookeeper://127.0.0.1:2181
-   protocol: dubbo
-   port: 20800
-   threads: 200
-
 
