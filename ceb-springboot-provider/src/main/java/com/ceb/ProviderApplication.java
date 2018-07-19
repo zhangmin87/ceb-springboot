@@ -11,9 +11,9 @@ import org.springframework.cache.annotation.EnableCaching;
 @EnableDubboConfiguration
 @EnableCaching
 @MapperScan(basePackages =  {"com.ceb.system.mapper"})
-public class DemoApplication implements CommandLineRunner {
+public class ProviderApplication implements CommandLineRunner {
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(ProviderApplication.class, args);
     }
 
     @Override
