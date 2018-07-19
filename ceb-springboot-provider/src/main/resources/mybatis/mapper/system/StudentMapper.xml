@@ -6,6 +6,6 @@
         t.name AS name,
         t.sno  AS sno
         FROM student t
-        WHERE t.sno = '32'
+--         WHERE t.sno = '32'
     </select>
 </mapper>

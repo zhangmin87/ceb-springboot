@@ -6,6 +6,9 @@ import com.ceb.system.mapper.StudentMapper;
 import com.ceb.system.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+
 @Component
 @Service(interfaceClass = StudentService.class)
 public class StudentServiceImpl implements StudentService {
@@ -14,8 +17,8 @@ public class StudentServiceImpl implements StudentService {
     private StudentMapper mapper;
 
     @Override
-    public StudentDTO getStudent() {
-        StudentDTO student =  mapper.get();
-        return student;
+    public List<StudentDTO> getStudent() {
+        List<StudentDTO> students =  mapper.get();
+        return students;
     }
 }
