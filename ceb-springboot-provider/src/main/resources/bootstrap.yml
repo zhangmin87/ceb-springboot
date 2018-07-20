@@ -1,0 +1,16 @@
+# bootstrap.yaml
+
+# ZooKeeper address
+zk:
+  address: 127.0.0.1:2181
+
+# dangdangconfig setting
+dangdangconfig:
+  # ZooKeeper地址
+  connect-string: ${zk.address}
+  # 配置中心
+  root-node: /cbec-conf
+  version: 1.0.0
+  groups:
+    - redis.properties
+    - jdbc.properties

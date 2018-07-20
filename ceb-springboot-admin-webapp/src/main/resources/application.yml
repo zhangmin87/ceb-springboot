@@ -4,11 +4,12 @@
 server:
   port: 8088
   sessionTimeout: 30
+
   servlet:
     context-path: /cebsprigboot
   # thymeleaf
 thymeleaf:
-  prefix: classpath:/templates/
+  prefix: classpath:/templates/thymeleaf/
   #开发时关闭缓存,不然没法看到实时页面
   cache: false
   mode: HTML5
