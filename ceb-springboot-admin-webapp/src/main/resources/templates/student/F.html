@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- fragment 类似于jsp 的 tag ,在html文件中,可以将重复的东西，通过其包起来 -->
+<head th:fragment="minimal" th:with="CDN = ${'http://dev.infoccsp.com/staticNG'}, staticVersion= ${'20161201'}" >
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script th:src="@{${CDN} + '/jquery-2.2.4/dist/jquery.min.js'}"></script>
+</head>
+<body>
+<!--/*@thymesVar id="name" type="java.lang.String"*/-->
+<p id = "firstId" th:text="'Hello！, ' + ${name} + '!' + ${sun}" ></p>
+<button id = "acvietPText">点我</button>
+<script th:inline="javascript">
+    $(function () {
+        $("#acvietPText").click(function () {
+            alert($("#firstId").text());
+        });
+
+        $("#acvietPText").click(function () {
+            alert("filed you");
+        })
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="主页"></title>
+    <div th:replace="fragment/head :: minimal" />
+    <div th:replace="fragment/head :: adminLTE" />
+</head>
+<body class="fixed skin-blue sidebar-mini">
+<div th:include="layout/header"></div>
+<div th:include="layout/sidebar"></div>
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            主页
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="${ctx}"><i class="fa fa-home"></i>主页</a></li>
+            <li>主页管理</li>
+            <li class="active">主页维护</li>
+        </ol>
+    </section>
+    <section class="content" >
+        <body>
+        <!--/*@thymesVar id="name" type="java.lang.String"*/-->
+        <p id = "firstId" ></p>
+        <button id = "acvietButton">点我</button>
+        <script type="text/javascript" th:inline="javascript">
+                $("#acvietButton").click(function (){
+                    $.ajax({
+                        type:"post",
+                        url:[[@{/com/ceb/query}]],
+                        success: function(data){
+                            alert("成功");
+                            $("#firstId").html(data.name);
+                        }}
+                )
+                });
+        </script>
+        </body>
+    </section>
+</div>
+
+<div th:include="layout/footer"></div>
+</body>
+</html>

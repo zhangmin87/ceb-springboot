@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -20,11 +21,19 @@ public class StudentController {
     @Reference
     private StudentService studentService;
 
+
+    //初始化
+    @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST})
+    public String inint() {
+        return "student/Home";
+    }
+
+    //查询
     @RequestMapping(value = "/query",method = {RequestMethod.GET,RequestMethod.POST})
-    public String execute(Model  model ) {
+    @ResponseBody
+    public StudentDTO execute(Model  model ) {
         List<StudentDTO> list = studentService.getStudent();
-        model.addAttribute("name",list.get(0).getName());
-        model.addAttribute("sun",list.get(0).getSno());
-       return  "first";
+        StudentDTO studentDTO = list.get(0);
+        return  studentDTO;
     }
 }

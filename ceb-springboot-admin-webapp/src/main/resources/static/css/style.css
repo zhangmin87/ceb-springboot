@@ -1,0 +1,77 @@
+body {
+    font-size: 12px;
+}
+.required {
+    background-color: #ffffc6;
+}
+ul.pagination {
+    float: right;
+}
+.box-footer ul.pagination {
+    margin: 0px;
+}
+.gsLoader {
+    background: none repeat scroll 0 0 rgba(250, 250, 250, 0.8);
+    border: 0 none;
+    bottom: 0;
+    color: #767676;
+    font-weight: normal;
+    left: 0;
+    margin: 0;
+    padding: 250px 0 0;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: auto;
+    z-index: 9999;
+}
+.gsLoader .line-scale > div {
+    background-color: #4daf7c;
+}
+.None {
+    color: #767676;
+}
+.Notifying {
+    color: greenyellow;
+}
+.Notified {
+    color: #26c281;
+}
+.Rejected {
+    color: #e4393c;
+}
+
+/** 圆形的步骤条 */
+.steps-round-auto .todo {
+    border: 4px solid #d3d3d3;
+    color: #d3d3d3;
+    background-color: #fff;
+}
+.steps-round-auto .finished {
+    border: 4px solid darkgreen;
+    color: darkgreen;
+    background-color: #fff;
+}
+.steps-round-auto .rejected {
+    border: 4px solid firebrick;
+    color: firebrick;
+    background-color: #fff;
+}
+.steps-round-auto .round {
+    /*border-radius: 15px;*/
+    border-radius: 50%;
+    /*color: #999999;*/
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    vertical-align: middle;
+    width: 22px;
+    box-sizing: content-box;
+    display: inline-block;
+}
+ .error {
+     color: #ff0000;
+     font-weight: bold;
+ }

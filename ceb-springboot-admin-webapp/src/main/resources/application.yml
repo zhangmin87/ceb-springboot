@@ -7,9 +7,9 @@ server:
 
   servlet:
     context-path: /cebsprigboot
-  # thymeleaf
+  # view
 thymeleaf:
-  prefix: classpath:/templates/thymeleaf/
+  prefix: classpath:/templates/
   #开发时关闭缓存,不然没法看到实时页面
   cache: false
   mode: HTML5

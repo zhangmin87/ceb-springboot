@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            //<![CDATA[
+            var pgurl = window.location.href;
+            // active：ul.sidebar-menu -> li -> a
+            $("ul.sidebar-menu>li>a").each(function () {
+                if ($(this).attr("href") != "#" && pgurl.indexOf($(this).attr("href").split("?")[0]) >= 0) {
+                    $(this).parent().addClass("active");
+                }
+            });
+            // active：ul.treeview-menu -> li -> a
+            $("ul.treeview-menu>li>a").each(function () {
+                if ($(this).attr("href") != "#" && pgurl.indexOf($(this).attr("href").split("?")[0]) >= 0) {
+                    $(this).parent().addClass("active");
+                    $(this).parent().parent().parent().addClass("active");
+                }
+            });
+            //]]>
+            $.each([[${#httpServletRequest.getCookies()}]], function(i, cookies){
+                if(cookies.name == "AdminLTE.sidebar.state") {
+                    if(cookies.value == "closed") {
+                        $("body .sidebar-mini").addClass("sidebar-collapse");
+                    }
+                }
+            });
+        });
+    </script>
+    <!-- Left side column. contains the sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="http://dev.infoccsp.com/staticNG/local/images/default_avatar.jpg" class="img-circle" alt="User Image" />
+                </div>
+                <div class="pull-left info">
+                    <!--/*@thymesVar id="user" type="com.ceair.cbec.datacenter.system.dto.UserDTO"*/-->
+                    <!--<p th:text="${user.username}"></p>-->
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="treeview">
+                    <a th:href="@{'/Home'}">
+                        <i class="fa fa-home"></i><span>Home</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-folder"></i>
+                        <span>system</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a th:href="@{'/system/user/'}"><i class="fa fa-circle-o"></i>用户管理</a>
+                        </li>
+                        <li>
+                            <a th:href="@{'/system/role/'}"><i class="fa fa-circle-o"></i>角色管理</a>
+                        </li>
+                        <li>
+                            <a th:href="@{'/system/menu/'}"><i class="fa fa-circle-o"></i>菜单管理</a>
+                        </li>
+                        <li>
+                            <a th:href="@{'/system/permission/'}"><i class="fa fa-circle-o"></i>权限管理</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </aside>
+</html>
