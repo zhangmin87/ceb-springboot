@@ -25,10 +25,10 @@ public class StudentController {
     //初始化
     @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST})
     public String inint() {
-        return "student/Home";
+        return "Home";
     }
 
-    //查询
+        //查询
     @RequestMapping(value = "/query",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public StudentDTO execute(Model  model ) {
@@ -36,4 +36,6 @@ public class StudentController {
         StudentDTO studentDTO = list.get(0);
         return  studentDTO;
     }
+
+
 }
