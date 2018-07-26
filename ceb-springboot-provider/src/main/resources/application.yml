@@ -40,5 +40,5 @@ thymeleaf:
 mybatis:
    config-location: classpath:mybatis/mybatis-config.xml
 ## 目前不知道什么原因，mapper-locations 这种方式不能加载xml 文件
-   mapperLocations: classpath:mybatis/mapper/system/StudentMapper.xml
+   mapperLocations: classpath:mybatis/mapper/**/*.xml
 

@@ -36,6 +36,4 @@ public class StudentController {
         StudentDTO studentDTO = list.get(0);
         return  studentDTO;
     }
-
-
 }

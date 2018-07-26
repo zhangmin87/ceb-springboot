@@ -10,7 +10,6 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication
 @EnableDubboConfiguration
 @EnableCaching
-@MapperScan(basePackages =  {"com.ceb.system.mapper"})
 public class ProviderApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(ProviderApplication.class, args);

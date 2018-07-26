@@ -14,13 +14,12 @@
 <div class="htmleaf-container">
     <header class="htmleaf-header">
         <h1></h1>
-
     </header>
     <div class="signin">
         <div class="signin-head"></div>
-        <form class="form-signin" role="form">
-            <input type="text" class="form-control" placeholder="用户名" required autofocus />
-            <input type="password" class="form-control" placeholder="密码" required />
+        <form class="form-signin" th:method="post"  th:object="${userDTO}" th:id="loginFormId" th:action="@{/login/register}" role="form">
+            <input type="text" th:name="username" class="form-control" placeholder="用户名" required autofocus />
+            <input type="password"  th:name="password" class="form-control" placeholder="密码" required />
             <button class="btn btn-lg btn-info btn-block" type="submit">登录</button>
             <label class="checkbox">
                 <input type="checkbox" value="remember-me"> 记住我

@@ -7,7 +7,6 @@ import com.ceb.system.mapper.StudentMapper;
 import com.ceb.system.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
