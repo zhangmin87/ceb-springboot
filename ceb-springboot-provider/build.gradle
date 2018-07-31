@@ -40,6 +40,13 @@ dependencies {
     //dubbo
     compile "com.alibaba.spring.boot:dubbo-spring-boot-starter:1.0.2"
     compile "com.alibaba:dubbo:2.5.9"
+    //shiro
+    compile 'org.apache.shiro:shiro-spring:1.4.0'
+    compile 'org.apache.shiro:shiro-all:1.2.5'
+    compile 'org.apache.shiro:shiro-quartz:1.2.5'
+    compile 'org.apache.shiro:shiro-core:1.2.5'
+    compile 'org.apache.shiro:shiro-web:1.2.5'
+
 //    //zk
     compile ("org.apache.zookeeper:zookeeper:3.4.6") {
          exclude group: 'org.slf4j'

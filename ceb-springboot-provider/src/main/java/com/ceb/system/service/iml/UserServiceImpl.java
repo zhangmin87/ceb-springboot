@@ -9,6 +9,8 @@ import com.ceb.system.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 
 /**
  * 如果既需要spring注入又需要当做provider ，不能同时使用这两个service,
@@ -28,6 +30,7 @@ public class UserServiceImpl implements UserService {
     public void doSave(UserDTO userDTO) {
         String encodedPasswd = textEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(encodedPasswd);
+        userDTO.setCreateTime(new Date());
         logionMapper.insertUser(userDTO);
     }
 }

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ceb.system.mapper.login.LoginMapper">
     <insert id="insertUser" parameterType="com.ceb.system.DTO.UserDTO">
-        INSERT INTO t_system_user (USERNAME, PASSWORD)
+        INSERT INTO t_system_user (USERNAME, PASSWORD,CREATE_TIME)
         VALUES
-        (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR})
+        (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{createTime,jdbcType=DATE} )
     </insert>
 </mapper>

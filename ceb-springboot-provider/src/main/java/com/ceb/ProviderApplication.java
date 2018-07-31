@@ -1,15 +1,19 @@
 package com.ceb;
 
 import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
-import org.mybatis.spring.annotation.MapperScan;
+
+import org.hibernate.Hibernate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
-@SpringBootApplication
+
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
 @EnableDubboConfiguration
-@EnableCaching
+@EnableAutoConfiguration
 public class ProviderApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(ProviderApplication.class, args);
