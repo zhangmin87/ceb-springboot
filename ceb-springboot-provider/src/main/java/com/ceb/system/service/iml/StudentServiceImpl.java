@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 
 import com.ceb.system.DTO.StudentDTO;
 import com.ceb.system.mapper.StudentMapper;
-import com.ceb.system.service.StudentService;
+import com.ceb.system.service.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
@@ -14,11 +14,12 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    private StudentMapper mapper;
+    private StudentMapper studentMapper;
 
     @Override
     public List<StudentDTO> getStudent() {
-        List<StudentDTO> students =  mapper.get();
+        List<StudentDTO> students = studentMapper.get();
         return students;
+//        return  null;
     }
 }

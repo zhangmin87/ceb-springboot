@@ -1,4 +1,4 @@
-package com.ceb.system.service;
+package com.ceb.system.service.student;
 
 import com.ceb.system.DTO.StudentDTO;
 

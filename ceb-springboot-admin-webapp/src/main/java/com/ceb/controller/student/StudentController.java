@@ -5,7 +5,8 @@ import com.alibaba.dubbo.config.annotation.Reference;
 
 
 import com.ceb.system.DTO.StudentDTO;
-import com.ceb.system.service.StudentService;
+import com.ceb.system.service.User.UserService;
+import com.ceb.system.service.student.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,8 @@ public class StudentController {
     @Reference
     private StudentService studentService;
 
+    @Reference
+    private UserService userService;
 
     //初始化
     @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST})

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <description>== Shiro Components ==</description>
+
+
+
+    <!-- Session Manager -->
+
+    <!--
+        自定义角色过滤器 支持多个角色可以访问同一个资源 eg:/home.jsp = authc,roleOR[admin,user]
+        用户有admin或者user角色 就可以访问
+    -->
+
+
+
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="loginUrl" value="/u/login.shtml" />
+        <!--	TODO 待提取	-->
+        <property name="successUrl" value="/" />
+        <property name="unauthorizedUrl" value="/?login" />
+
+        <!--	初始配置，现采用自定义	-->
+        <!--		<property name="filterChainDefinitions" >-->
+        <!--			<value>-->
+        <!--				/** = anon-->
+        <!--				/page/login.jsp = anon-->
+        <!--				/page/register/* = anon-->
+        <!--				/page/index.jsp = authc-->
+        <!--				/page/addItem* = authc,roles[数据管理员]-->
+        <!--				/page/file* = authc,roleOR[普通用户,数据管理员]-->
+        <!--				/page/listItems* = authc,roleOR[数据管理员,普通用户]-->
+        <!--				/page/showItem* = authc,roleOR[数据管理员,普通用户]-->
+        <!--				/page/updateItem*=authc,roles[数据管理员]-->
+        <!--            </value>-->
+        <!--		</property>-->
+        <!-- 读取初始自定义权限内容-->
+        <property name="filterChainDefinitions" value="#{shiroManager.loadFilterChainDefinitions()}"/>
+
+    </bean>
+
+
+    <!-- ============================================================================ -->
+
+</beans>
+

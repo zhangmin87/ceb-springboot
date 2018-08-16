@@ -1,34 +1,55 @@
 package com.ceb.controller.login;
 
+import com.ceb.common.TokenMannagerfacadeHelper;
+import com.ceb.controller.AdminController;
+import com.ceb.shiro.DTO.UUser;
 
-
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.ceb.system.DTO.UserDTO;
-import com.ceb.system.service.User.UserService;
+import org.apache.shiro.authc.DisabledAccountException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
 
 
 @Controller
 @RequestMapping("/login")
-public class ResourceLoginController {
-
-    @Reference
-    private UserService userService;
-
-    //查询
+public class ResourceLoginController extends AdminController {
+    /**
+     * 初始化
+     * @param model
+     * @return
+     */
     @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST})
     public String execute(Model  model ) {
-        UserDTO userDTO = new UserDTO();
-        model.addAttribute("userDTO",userDTO);
+        UUser user = new UUser();
+        model.addAttribute("UUser",user);
         return  "login" ;
     }
 
-    @RequestMapping(value = "register",method = {RequestMethod.GET,RequestMethod.POST})
-    public String login( UserDTO userDTO, Model model) {
-        userService.doSave(userDTO);
-        return "login";
+    /**
+     * 登录
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "toLogin",method = {RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Map<String,Object> login(UUser uUser, boolean rememberMe) {
+        try {
+            TokenMannagerfacadeHelper.login(uUser,rememberMe);
+            resultMap.put("status",200);
+            resultMap.put("message","登录成功");
+        }catch (DisabledAccountException e) {
+            resultMap.put("status",500);
+            resultMap.put("message","账号禁用");
+        }catch (Exception e) {
+            resultMap.put("status",500);
+            resultMap.put("message","账号或者密码错误");
+        }
+        return  resultMap;
     }
+
 }

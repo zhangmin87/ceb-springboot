@@ -1,11 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<!--第三方插件先引用我们公司的nginx上的 -->
+<head th:fragment="minimal" th:with="CDN = ${'http://dev.infoccsp.com/staticNG'}, staticVersion= ${'20161201'}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>主页</title>
     <link rel="icon" href="图片位置" type="image/x-icon"/>
+    <!-- jQuery -->
+    <script th:src="@{${CDN} + '/jquery-2.2.4/dist/jquery.min.js'}"></script>
     <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/htmleaf-demo.css}">
     <link th:href="@{/css/signin.css}" rel="stylesheet">
@@ -17,15 +20,48 @@
     </header>
     <div class="signin">
         <div class="signin-head"></div>
-        <form class="form-signin" th:method="post"  th:object="${userDTO}" th:id="loginFormId" th:action="@{/login/register}" role="form">
-            <input type="text" th:name="username" class="form-control" placeholder="用户名" required autofocus />
-            <input type="password"  th:name="password" class="form-control" placeholder="密码" required />
-            <button class="btn btn-lg btn-info btn-block" type="submit">登录</button>
+        <form class="form-signin" th:method="post"  th:object="${UUser}" th:id="loginFormId" th:action="@{/login/toLogin}" role="form">
+            <input type="text" th:id="email_Id" th:name="email" class="form-control" placeholder="用户名" required autofocus />
+            <input type="password" th:id="pswd_Id"  th:name="pswd" class="form-control" placeholder="密码" required />
+            <button class="btn btn-lg btn-info btn-block" type="button" th:id="submitId">登录</button>
             <label class="checkbox">
-                <input type="checkbox" value="remember-me"> 记住我
+                <input type="checkbox" th:id="remeber_Id" value="remember-me" /> 记住我
             </label>
         </form>
     </div>
 </div>
+    <!--  引用本地的js -->
+    <script  th:src="@{/js/MD5.js}"></script>
+    <script  th:src="@{/js/layer/layer.js}"></script>
+    <script type="text/javascript" th:inline="javascript">
+        $("#submitId").click(function () {
+            var email = $("#email_Id").val();
+            var pswd = $("#pswd_Id").val();
+            var md5Pswd = MD5(email+"#"+pswd);
+            var rememberMe = $("#remeber_Id").is(":checked");
+            data = {email:email,pswd:md5Pswd,rememberMe:rememberMe}
+                //开始load (弹出黄色小圈圈)
+            var  load =layer.load();
+            $.ajax({
+                type:"post",
+                data:data,
+                url: [[@{/login/toLogin}]],
+                dataType:"json",
+                beforeSend:function(){
+                    layer.msg('加载请稍后');
+                },
+                success:function(data) {
+                    //关闭load
+                    layer.close(load);
+                    if (data.status == "200") {
+                        layer.msg(data.message)
+                    }
+                    if (data.status == '500') {
+                        layer.msg(data.message);
+                    }
+            }
+            })
+        })
+    </script>
 </body>
 </html>

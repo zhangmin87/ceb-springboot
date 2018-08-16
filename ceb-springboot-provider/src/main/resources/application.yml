@@ -1,6 +1,6 @@
 #Server setting (ServerProperties)
 server:
-  port: 8080
+  port: 8087
   sessionTimeout: 30
 
 
@@ -42,4 +42,11 @@ mybatis:
    config-location: classpath:mybatis/mybatis-config.xml
 ## 目前不知道什么原因，mapper-locations 这种方式不能加载xml 文件
    mapperLocations: classpath:mybatis/mapper/**/*.xml
+
+# shiro
+shiro:
+   configLuction: classpath:/shiro/spring-shiro.xml
+
+
+
 

@@ -6,4 +6,36 @@
         VALUES
         (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{createTime,jdbcType=DATE} )
     </insert>
+    <select id="selectUser" parameterType="string" resultType="com.ceb.shiro.DTO.UUser">
+        SELECT u.EMAIL as email,u.PSWD as pswd,u.id as id FROM
+        u_user u where
+        u.email = #{email,jdbcType=VARCHAR} and  u.pswd = #{pswd,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateUser" parameterType="com.ceb.shiro.DTO.UUser">
+        update
+        u_user
+        <set>
+          <if test="nickname != null">
+            nickname = #{nickname,jdbcType=VARCHAR},
+          </if>
+          <if test="email != null">
+            email = #{email,jdbcType=VARCHAR},
+          </if>
+            <if test="pswd != null" >
+                pswd = #{pswd,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastLoginTime != null" >
+                last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <!-- BIGHINT 中 当整数值超过int数据范围时才可以使用  -->
+            <if test="status != null" >
+                status = #{status,jdbcType=BIGINT}
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>
