@@ -23,14 +23,16 @@ import java.util.Date;
  * </p>
  */
 public class SampleRealm extends AuthorizingRealm {
-
-
 //    @Reference
 //    @Lazy
 //    private UserService userService;
 
 //    @Autowired
-    //由于SamleReam 底层是拦截器 加载有问题 ，无法通过@reference 注入进来，所有是有问题的，通过另外一个类吗，注入进去，，然后通过构造器的方式进来
+    /**
+     * fixme ：由于SamleReam 底层是拦截器 类加载顺序有问题 ,导致dubbo 服务无法成功注入通过@reference 注入进来，所有是有问题的，通过另外一个类吗，注入进去，，然后通过构造器的方式进来，后期有时间研究一下
+     *
+     *
+     */
     private DubboSuport dubboSuport;
 
     public SampleRealm(DubboSuport dubboSuport) {
@@ -58,13 +60,11 @@ public class SampleRealm extends AuthorizingRealm {
             throw new DisabledAccountException("此账号已经禁止登录");
         }else {
             //更新登录时间
-
             uUser.setLastLoginTime(new Date());
             DubboSuport.userService.updateUser(uUser);
         }
         return new SimpleAuthenticationInfo(uUser,uUser.getPswd(),getName());
     }
-
     /**
      * 授权
      * @param principalCollection
