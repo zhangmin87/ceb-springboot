@@ -3,6 +3,7 @@ package com.ceb.common;
 import com.ceb.shiro.DTO.UUser;
 import com.ceb.shiro.ShiroToken;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.mgt.SecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,7 +19,7 @@ public class TokenMannagerfacadeHelper {
      * @return
      */
     public static UUser login(UUser uUser, boolean rememberme) {
-        ShiroToken shiroToken = new ShiroToken(uUser.getEmail(),uUser.getPswd());
+        UsernamePasswordToken shiroToken = new ShiroToken(uUser.getEmail(),uUser.getPswd());
         shiroToken.setRememberMe(rememberme);
         SecurityUtils.getSubject().login(shiroToken);
         return getToken();

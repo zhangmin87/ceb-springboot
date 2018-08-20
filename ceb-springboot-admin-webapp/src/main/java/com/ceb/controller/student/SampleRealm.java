@@ -39,7 +39,6 @@ public class SampleRealm extends AuthorizingRealm {
         this.dubboSuport = dubboSuport;
     }
 
-
     public SampleRealm() {
         super();
     }
@@ -63,6 +62,7 @@ public class SampleRealm extends AuthorizingRealm {
             uUser.setLastLoginTime(new Date());
             DubboSuport.userService.updateUser(uUser);
         }
+        //返回认证信息，由AuthorizingRealm 完成认证
         return new SimpleAuthenticationInfo(uUser,uUser.getPswd(),getName());
     }
     /**

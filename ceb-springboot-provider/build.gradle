@@ -42,7 +42,7 @@ dependencies {
     compile "com.alibaba:dubbo:2.5.9"
     //shiro
     compile 'org.apache.shiro:shiro-spring:1.4.0'
-    compile 'org.apache.shiro:shiro-all:1.2.5'
+//    compile 'org.apache.shiro:shiro-all:1.2.5'
     compile 'org.apache.shiro:shiro-core:1.2.5'
     compile 'org.apache.shiro:shiro-web:1.2.5'
 

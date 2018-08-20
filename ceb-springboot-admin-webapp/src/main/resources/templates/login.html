@@ -54,7 +54,11 @@
                     //关闭load
                     layer.close(load);
                     if (data.status == "200") {
-                        layer.msg(data.message)
+                        layer.msg(data.message);
+                        setTimeout(function() {
+                            //登录返回
+                            window.location.href= data.back_url;
+                        },1000)
                     }
                     if (data.status == '500') {
                         layer.msg(data.message);

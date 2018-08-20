@@ -2,6 +2,9 @@ package com.ceb.shiro;
 
 import org.apache.shiro.authc.UsernamePasswordToken;
 
+/**
+ * token 扩展父类中的password 用字符串类型
+ */
 public class ShiroToken extends UsernamePasswordToken implements java.io.Serializable {
 
     private static final long serialVersionUID = -6451794657814516274L;
