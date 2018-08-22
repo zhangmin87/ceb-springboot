@@ -74,6 +74,7 @@ public class ShiroConfig {
 
         //自定义拦截器
         Map<String, Filter> filters = shiroFilterFactoryBean.getFilters();
+        filters.put("customizeAjax",new CustomizedAjaxFilter());
         filters.put("customizedLogin",new CustomizedLoginFilter());
         shiroFilterFactoryBean.setFilters(filters);
 
@@ -102,7 +103,7 @@ public class ShiroConfig {
     }
 
     @Bean(name = "delegatingFilterProxy")
-    public FilterRegistrationBean delegatingFilterProxy(){
+    public FilterRegistrationBean delegatingFilterProxy() {
          FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
          DelegatingFilterProxy proxy = new DelegatingFilterProxy();
          proxy.setTargetFilterLifecycle(true);
@@ -131,7 +132,7 @@ public class ShiroConfig {
         //todo:这里暂时配置使用默认的
         DefaultWebSessionManager defaultWebSessionManager = new DefaultWebSessionManager();
         //session 过期时间
-        defaultWebSessionManager.setGlobalSessionTimeout(6000);
+        defaultWebSessionManager.setGlobalSessionTimeout(10000);
         //删除失败的session
         defaultWebSessionManager.setDeleteInvalidSessions(true);
         return defaultWebSessionManager;

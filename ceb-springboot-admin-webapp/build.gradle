@@ -42,6 +42,9 @@ dependencies {
     compile 'org.apache.shiro:shiro-core:1.2.5'
     compile 'org.apache.shiro:shiro-web:1.2.5'
 
+    //json
+    compile 'net.sf.json-lib:json-lib:2.4:jdk15'
+
     //theamleaf + shiro
     compile 'com.github.theborakompanioni:thymeleaf-extras-shiro:2.0.0'
 

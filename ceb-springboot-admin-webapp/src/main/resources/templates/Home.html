@@ -30,10 +30,12 @@
                 $("#acvietButton").click(function (){
                     $.ajax({
                         type:"post",
+                        dataType:'json',
                         url:[[@{/com/ceb/query}]],
                         success: function(data){
-                            alert("成功");
-                            $("#firstId").html(data.name);
+                           if (data.status == '303') {
+                               alert(data.message);
+                           }
                         }}
                 )
                 });
@@ -41,7 +43,6 @@
         </body>
     </section>
 </div>
-
 <div th:include="layout/footer"></div>
 </body>
 </html>
