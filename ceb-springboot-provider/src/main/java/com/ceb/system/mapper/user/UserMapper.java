@@ -1,13 +1,12 @@
-package com.ceb.system.mapper.login;
+package com.ceb.system.mapper.user;
 
 import com.ceb.shiro.DTO.UUser;
 import com.ceb.system.DTO.UserDTO;
-import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface LoginMapper {
+public interface UserMapper {
     void insertUser(UserDTO userDTO);
 
     /**
@@ -16,11 +15,13 @@ public interface LoginMapper {
      * @param pswd
      * @return
      */
-    UUser selectUser(@Param("email")String email,@Param("pswd")String pswd);
+    UUser selectUserByEmailAndPswd(@Param("email")String email,@Param("pswd")String pswd);
 
     /**
      * 更新用户信息
      * @param uUser
      */
     void updateUser(UUser uUser);
+
+
 }

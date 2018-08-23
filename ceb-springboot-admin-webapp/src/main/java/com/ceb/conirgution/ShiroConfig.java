@@ -3,10 +3,12 @@ package com.ceb.conirgution;
 
 import com.ceb.controller.student.SampleRealm;
 import com.ceb.dubbo.DubboSuport;
+import com.ceb.filter.CustomizedAjaxFilter;
 import com.ceb.filter.CustomizedLoginFilter;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,38 +28,6 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-//    @Bean(name="shiroFilter")
-//    public ShiroFilterFactoryBean shiroFilter(ShiroManagerService shiroManagerService) {
-//        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-////        shiroFilterFactoryBean.setFilterChainDefinitions(shiroManagerService.loadFilterChainDefinitions());
-//        DefaultWebSecurityManager  defaultWebSecurityManager = new DefaultWebSecurityManager();
-//        SampleRealm sampleRealm = new SampleRealm();
-//        defaultWebSecurityManager.setRealm(sampleRealm);
-//
-//        shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
-//        //拦截器
-//        // ;
-//        Map<String,String> filterChainDeinitionMap = new LinkedHashMap<String,String>();
-//        filterChainDeinitionMap.put("/login/toLogin","anon");
-//        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDeinitionMap);
-//        return shiroFilterFactoryBean;
-//    }
-//
-//    @Bean
-//    public FilterRegistrationBean delegatingFilterProxy(){
-//        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-//        DelegatingFilterProxy proxy = new DelegatingFilterProxy();
-//        proxy.setTargetFilterLifecycle(true);
-//        filterRegistrationBean.setFilter(proxy);
-//        return filterRegistrationBean;
-//    }
-
-//    @Bean("shiroFilter")
-//    public ShiroFilterFactoryBean shiroFilterFactoryBean() {
-//        ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
-//        return filterFactoryBean;
-//    }
-
 
     /**
      * ShiroFilterFactoryBean 处理拦截资源文件问题。
@@ -84,8 +54,9 @@ public class ShiroConfig {
          */
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         filterChainDefinitionMap.put("/login", "anon");
-//        filterChainDefinitionMap.put("/login/toLogin","customizedLogin");
-        filterChainDefinitionMap.put("/com/ceb","authc");
+//        filterChainDefinitionMap.put("/user/toLogin","customizedLogin");
+        filterChainDefinitionMap.put("/com/ceb/query","customizeAjax");
+        filterChainDefinitionMap.put("/com/ceb/**","authc");
         //没有登录的用户请求需要登录的页面时自动跳转到登录页面，不是必须的属性
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -94,11 +65,14 @@ public class ShiroConfig {
     }
 
     @Bean(name = "securityManager")
-    public SecurityManager securityManager(@Qualifier("sessionManager")SessionManager sessionManager) {
+    public SecurityManager securityManager(@Qualifier("sessionManager")SessionManager sessionManager ) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         SampleRealm sampleRealm = new SampleRealm();
         securityManager.setSessionManager(sessionManager);
         securityManager.setRealm(sampleRealm);
+        securityManager.setSessionManager(sessionManager);
+        //todo:此功能暂时不加
+        //        securityManager.setRememberMeManager(cookieRememberMeManager);
         return securityManager;
     }
 
@@ -137,4 +111,26 @@ public class ShiroConfig {
         defaultWebSessionManager.setDeleteInvalidSessions(true);
         return defaultWebSessionManager;
     }
+
+//
+//    @Bean
+//    public SimpleCookie rememberMeCookie() {
+//        SimpleCookie simpleCookie = new SimpleCookie();
+//        //httpOnly为true的时候,防止前端js 获取到cookie 信息
+//        simpleCookie.setHttpOnly(true);
+//        //设置cookie的名字
+//        simpleCookie.setName("v_v_re_apple");
+//        //设置ocokis的过期的时间
+//        simpleCookie.setMaxAge(1800000);
+//        return simpleCookie;
+//    }
+
+    //remember
+//    @Bean
+//    public CookieRememberMeManager cookieRememberMeManager(@Qualifier("rememberMeCookie") SimpleCookie simpleCookie ) {
+//        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+//        cookieRememberMeManager.setCipherKey(Base64.decode("AvVhmFLUs0KTA3Kprsdag=="));
+//        cookieRememberMeManager.setCookie(simpleCookie);
+//        return cookieRememberMeManager;
+//    }
 }

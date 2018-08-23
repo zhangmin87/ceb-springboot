@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -27,7 +30,10 @@ public class StudentController {
 
     //初始化
     @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST})
-    public String inint() {
+    public String inint(HttpServletRequest request, HttpServletResponse response) {
+        for(Cookie cookie:request.getCookies()) {
+            System.out.println(cookie.getName()+"||||"+cookie.getValue());
+        }
         return "Home";
     }
 

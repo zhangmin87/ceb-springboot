@@ -9,12 +9,11 @@ import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 
@@ -27,7 +26,7 @@ public class ResourceLoginController extends AdminController {
      * @return
      */
     @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST})
-    public String execute(Model  model ) {
+    public String execute(Model  model,HttpServletRequest request,HttpServletResponse response ) {
         UUser user = new UUser();
         model.addAttribute("UUser",user);
         return  "login" ;
@@ -41,7 +40,7 @@ public class ResourceLoginController extends AdminController {
      */
     @RequestMapping(value = "toLogin",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Map<String,Object> login(UUser uUser, boolean rememberMe,HttpServletRequest request) {
+    public Map<String,Object> login(UUser uUser, boolean rememberMe, HttpServletRequest request, HttpServletResponse response) {
         try {
             TokenMannagerfacadeHelper.login(uUser,rememberMe);
 
@@ -57,6 +56,7 @@ public class ResourceLoginController extends AdminController {
             //跳转地址
             resultMap.put("back_url",request.getContextPath()+"/com/ceb");
 
+//            addCookie(request,response);
         }catch (DisabledAccountException e) {
             resultMap.put("status",500);
             resultMap.put("message","账号禁用");
@@ -66,5 +66,6 @@ public class ResourceLoginController extends AdminController {
         }
         return  resultMap;
     }
+
 
 }

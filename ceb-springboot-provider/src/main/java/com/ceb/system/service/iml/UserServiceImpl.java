@@ -5,7 +5,7 @@ import com.ceb.exterior.encoder.MD5TextEncoder;
 import com.ceb.exterior.encoder.TextEncoder;
 import com.ceb.shiro.DTO.UUser;
 import com.ceb.system.DTO.UserDTO;
-import com.ceb.system.mapper.login.LoginMapper;
+import com.ceb.system.mapper.user.UserMapper;
 import com.ceb.system.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    private LoginMapper logionMapper;
+    private UserMapper logionMapper;
 
     TextEncoder textEncoder = new MD5TextEncoder();
 
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UUser getUser(String email, String pswd) {
-        UUser uUser = logionMapper.selectUser(email,pswd);
+        UUser uUser = logionMapper.selectUserByEmailAndPswd(email,pswd);
         return uUser;
     }
 
