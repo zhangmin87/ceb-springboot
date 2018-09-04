@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -45,5 +46,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(UUser uUser) {
         logionMapper.updateUser(uUser);
+    }
+
+    @Override
+    public List<UUser> getAllUser() {
+       List<UUser> uUsers  = logionMapper.selectUser();
+       return uUsers;
     }
 }

@@ -38,4 +38,9 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
+
+    <!-- 查询所有 -->
+    <select id="selectUser" resultType="com.ceb.shiro.DTO.UUser">
+        SELECT u.id as id ,u.email as email ,u.status as status,u.last_login_time as lastLoginTime FROM u_user u
+    </select>
 </mapper>

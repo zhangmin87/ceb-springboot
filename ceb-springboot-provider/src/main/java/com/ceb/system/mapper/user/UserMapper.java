@@ -5,6 +5,8 @@ import com.ceb.system.DTO.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
     void insertUser(UserDTO userDTO);
@@ -23,5 +25,10 @@ public interface UserMapper {
      */
     void updateUser(UUser uUser);
 
+    /**
+     * 查询所有用户信息
+     * @return
+     */
+    List<UUser> selectUser();
 
 }
