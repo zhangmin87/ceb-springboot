@@ -1,5 +1,7 @@
 package com.ceb.shiro.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,6 +24,7 @@ public class UUser implements Serializable {
     /** 创建时间*/
     private Date createTime;
     /** 最后登录时间 */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date lastLoginTime;
     /**1:有效  ,0 禁止登录*/
     private Long status;

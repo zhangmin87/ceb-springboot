@@ -36,6 +36,6 @@ public class ResourceUserController extends AdminController {
     public BootrapTablePaginationData execute(Pagination pagination,Model model) {
         BootrapTablePaginationData<UUser> p = userService.getAllUser(pagination);
         //FIXME:适用bootstrap 分页
-        return p;
+            return p;
     }
 }
