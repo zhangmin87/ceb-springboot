@@ -11,10 +11,17 @@ public class BootrapTablePaginationData<T> implements Serializable {
     private int total;
     private List<T> rows;
 
-    public BootrapTablePaginationData(int total, List<T> rows) {
-            this.total = total;
+
+    // 对象进行序列化和反序列化有什么的必须有一个无参数构造器，不然报错
+    public BootrapTablePaginationData() {
+
+    }
+
+    public BootrapTablePaginationData(Pagination pagination, List<T> rows) {
+            this.total = pagination.getTotalCount();
             this.rows = rows;
-            }
+    }
+
     public int getTotal() {
         return total;
     }

@@ -63,6 +63,6 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
             }
         });
        // 封装成boostrap 分页对象
-       return new BootrapTablePaginationData<>(pagination.getTotalCount(),result);
+       return new BootrapTablePaginationData<>(pagination,result);
     }
 }

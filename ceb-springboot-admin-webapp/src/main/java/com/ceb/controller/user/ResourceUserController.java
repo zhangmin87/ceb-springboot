@@ -30,12 +30,12 @@ public class ResourceUserController extends AdminController {
         return "user/userDetail";
     }
 
-    // 初始化
+    // 用户细节
     @RequestMapping(value = "/detail",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public BootrapTablePaginationData execute(Pagination pagination,Model model) {
+    public BootrapTablePaginationData execute(Pagination pagination) {
         BootrapTablePaginationData<UUser> p = userService.getAllUser(pagination);
         //FIXME:适用bootstrap 分页
-            return p;
+        return p;
     }
 }
