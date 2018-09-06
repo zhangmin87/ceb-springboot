@@ -27,6 +27,8 @@ repositories {
 dependencies {
     //依赖opentApijar 包
     compile project(":ceb-springboot-api")
+    compile project(':ceb-springboot-commons')
+
     //thymeleaf
     compile "org.springframework.boot:spring-boot-starter-thymeleaf"
     compile('org.springframework.boot:spring-boot-starter-web')

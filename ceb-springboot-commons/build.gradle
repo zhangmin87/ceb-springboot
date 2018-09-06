@@ -25,6 +25,6 @@ repositories {
 
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+//    compile "com.github.pagehelper:pagehelper:4.1.6"
+//    compile "com.github.jsqlparser:jsqlparser:0.9.6"
 }

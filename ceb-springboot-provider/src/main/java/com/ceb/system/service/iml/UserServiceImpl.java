@@ -1,12 +1,16 @@
 package com.ceb.system.service.iml;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ceb.BaseServiceImpl;
 import com.ceb.exterior.encoder.MD5TextEncoder;
 import com.ceb.exterior.encoder.TextEncoder;
+import com.ceb.exterior.page.BootrapTablePaginationData;
+import com.ceb.exterior.page.Pagination;
 import com.ceb.shiro.DTO.UUser;
 import com.ceb.system.DTO.UserDTO;
 import com.ceb.system.mapper.user.UserMapper;
 import com.ceb.system.service.User.UserService;
+import com.github.pagehelper.ISelect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +25,7 @@ import java.util.List;
  */
 @Component
 @Service(interfaceClass = UserService.class)
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
 
     @Autowired
@@ -49,8 +53,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UUser> getAllUser() {
-       List<UUser> uUsers  = logionMapper.selectUser();
-       return uUsers;
+    public BootrapTablePaginationData<UUser> getAllUser(Pagination pagination) {
+
+       // 分页查询出来的数据
+       List<UUser> result = executeQuery(pagination, new ISelect() {
+            @Override
+            public void doSelect() {
+                logionMapper.selectUser();
+            }
+        });
+       // 封装成boostrap 分页对象
+       return new BootrapTablePaginationData<>(pagination.getTotalCount(),result);
     }
 }

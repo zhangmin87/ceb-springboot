@@ -1,9 +1,10 @@
 package com.ceb.system.service.User;
 
+import com.ceb.exterior.page.BootrapTablePaginationData;
+import com.ceb.exterior.page.Pagination;
 import com.ceb.shiro.DTO.UUser;
 import com.ceb.system.DTO.UserDTO;
 
-import java.util.List;
 
 public interface UserService {
 
@@ -13,5 +14,5 @@ public interface UserService {
 
     void updateUser(UUser uUser);
 
-    List<UUser> getAllUser();
+    BootrapTablePaginationData<UUser> getAllUser(Pagination pagination);
 }
