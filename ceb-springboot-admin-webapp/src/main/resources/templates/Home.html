@@ -31,7 +31,7 @@
                     $.ajax({
                         type:"post",
                         dataType:'json',
-                        url:[[@{/com/ceb/query}]],
+                        url:[[@{/com/ceb/query.json}]],
                         success: function(data){
                            if (data.status == '303') {
                                alert(data.message);

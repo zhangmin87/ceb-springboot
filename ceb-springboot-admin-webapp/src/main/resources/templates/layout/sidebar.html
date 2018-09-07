@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+>
     <script th:inline="javascript">
         $(document).ready(function () {
             //<![CDATA[
@@ -52,14 +54,14 @@
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-folder"></i>
-                        <span>system</span>
+                        <span>系统管理</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a th:href="@{'/system/user/'}"><i class="fa fa-circle-o"></i>用户管理</a>
+                            <a th:href="@{'/com/user'}"><i class="fa fa-circle-o"></i>用户信息查询</a>
                         </li>
                         <li>
                             <a th:href="@{'/system/role/'}"><i class="fa fa-circle-o"></i>角色管理</a>

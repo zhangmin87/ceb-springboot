@@ -6,6 +6,7 @@ import com.ceb.common.TokenManager;
 
 import com.ceb.shiro.DTO.UUser;
 import net.sf.json.JSONObject;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 
 import javax.servlet.ServletRequest;
@@ -24,16 +25,17 @@ public class CustomizedAjaxFilter extends AccessControlFilter {
 
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
-        UUser uUser = TokenManager.getToken();
+        Subject subject = getSubject(request, response);
+        boolean isAuthenticated = subject.isAuthenticated();
 
-        if (null != uUser) {
+        if (isAuthenticated) {
             return Boolean.TRUE;
         }
-        //判断是否ajax 请求
+        // 判断是否ajax 请求
         if (isAjax(request,response)) {
             return Boolean.FALSE;
         }
-        return Boolean.FALSE;
+        return Boolean.TRUE;
     }
 
     @Override

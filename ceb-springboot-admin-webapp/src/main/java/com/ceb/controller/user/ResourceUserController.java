@@ -6,7 +6,6 @@ import com.ceb.exterior.page.BootrapTablePaginationData;
 import com.ceb.exterior.page.Pagination;
 import com.ceb.shiro.DTO.UUser;
 import com.ceb.system.service.User.UserService;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +30,7 @@ public class ResourceUserController extends AdminController {
     }
 
     // 用户细节
-    @RequestMapping(value = "/detail",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "/detail.json",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public BootrapTablePaginationData execute(Pagination pagination) {
         BootrapTablePaginationData<UUser> p = userService.getAllUser(pagination);

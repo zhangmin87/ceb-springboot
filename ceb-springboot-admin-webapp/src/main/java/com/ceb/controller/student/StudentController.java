@@ -38,7 +38,7 @@ public class StudentController {
     }
 
         //查询
-    @RequestMapping(value = "/query",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "/query.json",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public StudentDTO execute(Model  model ) {
         List<StudentDTO> list = studentService.getStudent();

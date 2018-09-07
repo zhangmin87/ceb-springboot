@@ -55,11 +55,13 @@ public class ShiroConfig {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         filterChainDefinitionMap.put("/login", "anon");
 //        filterChainDefinitionMap.put("/user/toLogin","customizedLogin");
-        filterChainDefinitionMap.put("/com/ceb/query","customizeAjax");
+        filterChainDefinitionMap.put("/com/**/**.json","customizeAjax");
         filterChainDefinitionMap.put("/com/ceb/**","authc");
+        filterChainDefinitionMap.put("/com/user","authc");
         //没有登录的用户请求需要登录的页面时自动跳转到登录页面，不是必须的属性
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
 
         return shiroFilterFactoryBean;
     }
@@ -70,7 +72,6 @@ public class ShiroConfig {
         SampleRealm sampleRealm = new SampleRealm();
         securityManager.setSessionManager(sessionManager);
         securityManager.setRealm(sampleRealm);
-        securityManager.setSessionManager(sessionManager);
         //todo:此功能暂时不加
         //        securityManager.setRememberMeManager(cookieRememberMeManager);
         return securityManager;
@@ -106,12 +107,12 @@ public class ShiroConfig {
         //todo:这里暂时配置使用默认的
         DefaultWebSessionManager defaultWebSessionManager = new DefaultWebSessionManager();
         //session 过期时间
-        defaultWebSessionManager.setGlobalSessionTimeout(10000);
+        defaultWebSessionManager.setGlobalSessionTimeout(20000000);
         //删除失败的session
         defaultWebSessionManager.setDeleteInvalidSessions(true);
         return defaultWebSessionManager;
     }
-
+    //fimxe
 //
 //    @Bean
 //    public SimpleCookie rememberMeCookie() {
