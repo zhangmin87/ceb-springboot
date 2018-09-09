@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ceb.system.mapper.role.RoleMapper">
-    <select id="get" resultType="com.ceb.system.DTO.RoleDTO">
+    <select id="selectRole" resultType="com.ceb.system.DTO.RoleDTO">
         SELECT
+        t.id AS id,
         t.name AS name,
         t.type  AS type
         FROM u_role t

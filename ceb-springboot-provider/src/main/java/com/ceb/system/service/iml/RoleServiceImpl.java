@@ -17,21 +17,20 @@ import java.util.List;
  * @Author by zhangmin on 2018/9/7.16:52
  */
 @Component
-@Service(interfaceClass = RoleServiceImpl.class)
+@Service(interfaceClass = RoleService.class)
 public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 
     @Autowired
     private RoleMapper roleMapper;
 
     @Override
-    public BootrapTablePaginationData<RoleDTO> getAllUser(Pagination pagination) {
+    public BootrapTablePaginationData<RoleDTO> getAllRole(Pagination pagination) {
        List<RoleDTO> result = executeQuery(pagination, new ISelect() {
             @Override
             public void doSelect() {
                 roleMapper.selectRole();
             }
         });
-
         // 封装成boostrap 分页对象
         return new BootrapTablePaginationData<>(pagination,result);
     }

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="主页"></title>
+    <div th:replace="fragment/head :: minimal" />
+    <div th:replace="fragment/head :: adminLTE" />
+    <div th:replace="fragment/head :: bootstrapTabel "></div>
+</head>
+<body class="fixed skin-blue sidebar-mini">
+<div th:include="layout/header"></div>
+<div th:include="layout/sidebar"></div>
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            主页
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="${ctx}"><i class="fa fa-home"></i>主页</a></li>
+            <li>角色管理</li>
+            <li class="active">角色维护</li>
+        </ol>
+    </section>
+    <section class="content" >
+        <div class="box-body table-responsive">
+        <!--/*@thymesVar id="name" type="java.lang.String"*/-->
+        <table id="roleTable" data-show-refresh="true" data-show-toggle="true" data-show-columns="true">
+            <thead>
+            <tr>
+                <th class="text-center" data-field="id" data-sortable="true">id</th>
+                <th class="text-center" data-field="name">管理员权限角色</th>
+                <th class="text-center" data-field="type" >角色</th>
+            </tr>
+            </thead>
+        </table>
+        </div>
+        <script type="text/javascript" th:inline="javascript">
+            $("#roleTable").bootstrapTable({ // 对应table标签的id
+                url: "/cebsprigboot//com/role//detail.json", // 获取表格数据的url
+                cache: false, // 设置为 false 禁用 AJAX 数据缓存， 默认为true
+                striped: true,  //表格显示条纹，默认为false
+                pagination: true, // 在表格底部显示分页组件，默认false
+                pageList: [10, 20], // 设置页面可以显示的数据条数
+                pageSize: 2, // 页面数据条数
+                sortable: true,　//是否启用排序
+                pageNumber: 1, // 首页页码
+                sidePagination: 'server', // 设置为服务器端分页
+                queryParams: function (params) { // 请求服务器数据时发送的参数，可以在这里添加额外的查询参数，返回false则终止请求
+                    return {
+                        pageSize: params.limit, // 每页要显示的数据条数
+                        page: params.offset/params.limit+1   //当前页码
+                    }
+                },
+                sortName: 'id', // 要排序的字段
+                sortOrder: 'desc', // 排序规则
+                onLoadSuccess: function(){  //加载成功时执行
+                    console.info("加载成功");
+                },
+                onLoadError: function(){  //加载失败时执行
+                    console.info("加载数据失败");
+                }
+
+            })
+
+        </script>
+
+        </body>
+    </section>
+</div>
+<div th:include="layout/footer"></div>
+</body>
+</html>

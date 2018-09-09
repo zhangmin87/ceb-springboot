@@ -8,18 +8,22 @@ import java.io.Serializable;
  */
 public class RoleDTO implements Serializable {
 
+    //id
+    private String id;
+
     // 用户名
-    private String rname;
+    private String name;
 
     // type
-    private String type:
+    private String type;
 
-    public String getRname() {
-        return rname;
+
+    public String getName() {
+        return name;
     }
 
-    public void setRname(String rname) {
-        this.rname = rname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
@@ -28,5 +32,13 @@ public class RoleDTO implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -12,9 +12,8 @@ import com.ceb.system.DTO.RoleDTO;
 public interface RoleService {
 
     /**
-     *
      * @param pagination
      * @return
      */
-    BootrapTablePaginationData<RoleDTO> getAllUser(Pagination pagination);
+    BootrapTablePaginationData<RoleDTO> getAllRole(Pagination pagination);
 }

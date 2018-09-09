@@ -31,9 +31,7 @@ public class StudentController {
     //初始化
     @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST})
     public String inint(HttpServletRequest request, HttpServletResponse response) {
-        for(Cookie cookie:request.getCookies()) {
-            System.out.println(cookie.getName()+"||||"+cookie.getValue());
-        }
+
         return "Home";
     }
 
