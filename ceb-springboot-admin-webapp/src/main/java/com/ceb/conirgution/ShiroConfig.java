@@ -58,6 +58,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/com/**/**.json","customizeAjax");
         filterChainDefinitionMap.put("/com/ceb/**","authc");
         filterChainDefinitionMap.put("/com/user","authc");
+        filterChainDefinitionMap.put("/com/role/**","authc");
         //没有登录的用户请求需要登录的页面时自动跳转到登录页面，不是必须的属性
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

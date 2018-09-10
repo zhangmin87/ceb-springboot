@@ -2,6 +2,7 @@ package com.ceb.dubbo;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ceb.system.service.User.UserService;
+import com.ceb.system.service.role.RoleUserService;
 
 
 /**
@@ -10,6 +11,8 @@ import com.ceb.system.service.User.UserService;
 public class DubboSuport {
 
     @Reference
-    public static  UserService userService;
+    public static UserService userService;
 
+    @Reference
+    public static RoleUserService roleUserService;
 }

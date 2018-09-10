@@ -15,8 +15,16 @@ public class TokenManager {
 
     //用户session 管理
 
+    /**
+     * 获取token 信息
+     * @return
+     */
     public static UUser getToken() {
         UUser token =(UUser) SecurityUtils.getSubject().getPrincipal();
         return token;
+    }
+
+    public static Long getUserId() {
+        return getToken() == null ?null:getToken().getId();
     }
 }

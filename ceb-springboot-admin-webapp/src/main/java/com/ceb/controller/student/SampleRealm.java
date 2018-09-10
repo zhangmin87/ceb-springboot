@@ -1,12 +1,14 @@
 package com.ceb.controller.student;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ceb.common.TokenManager;
 import com.ceb.dubbo.DubboSuport;
 import com.ceb.shiro.DTO.UUser;
 import com.ceb.shiro.ShiroToken;
 import com.ceb.system.service.User.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +74,10 @@ public class SampleRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        Long userId = TokenManager.getToken().getId();
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        // 根据用户Id查询角色(role)，放入到Authorization 里
+
         return null;
     }
 }
