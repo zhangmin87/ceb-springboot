@@ -43,7 +43,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
     @Override
     public UUser getUser(String email, String pswd) {
-        UUser uUser = logionMapper.selectUserByEmailAndPswd(email,pswd);
+        UUser uUser = logionMapper.selectUserByEmailAndPwd(email,pswd);
         return uUser;
     }
 

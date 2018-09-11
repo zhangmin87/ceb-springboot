@@ -6,7 +6,7 @@
         VALUES
         (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{createTime,jdbcType=DATE} )
     </insert>
-    <select id="selectUserByEmailAndPswd" parameterType="string" resultType="com.ceb.shiro.DTO.UUser">
+    <select id="selectUserByEmailAndPwd" parameterType="string" resultType="com.ceb.shiro.DTO.UUser">
         SELECT u.EMAIL as email,u.PSWD as pswd,u.id as id FROM
         u_user u where
         u.email = #{email,jdbcType=VARCHAR} and  u.pswd = #{pswd,jdbcType=VARCHAR}

@@ -10,5 +10,5 @@ import java.util.Set;
 @Mapper
 public interface RoleUserMapper {
 
-    Set<String> findRoleByUserId(Long Id);
+    Set<String> selectRoleByUserId(Long Id);
 }

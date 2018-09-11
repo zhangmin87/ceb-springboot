@@ -17,7 +17,7 @@ public interface UserMapper {
      * @param pswd
      * @return
      */
-    UUser selectUserByEmailAndPswd(@Param("email")String email,@Param("pswd")String pswd);
+    UUser selectUserByEmailAndPwd(@Param("email")String email,@Param("pswd")String pswd);
 
     /**
      * 更新用户信息

@@ -1,6 +1,7 @@
 package com.ceb.conirgution;
 
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.ceb.controller.student.SampleRealm;
 import com.ceb.dubbo.DubboSuport;
 import com.ceb.filter.CustomizedAjaxFilter;
@@ -68,11 +69,13 @@ public class ShiroConfig {
     }
 
     @Bean(name = "securityManager")
-    public SecurityManager securityManager(@Qualifier("sessionManager")SessionManager sessionManager ) {
+    public SecurityManager securityManager(@Qualifier("sessionManager")SessionManager sessionManager) {
+
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         SampleRealm sampleRealm = new SampleRealm();
-        securityManager.setSessionManager(sessionManager);
         securityManager.setRealm(sampleRealm);
+        //        SampleRealm sampleRealm = new SampleRealm();
+        securityManager.setSessionManager(sessionManager);
         //todo:此功能暂时不加
         //        securityManager.setRememberMeManager(cookieRememberMeManager);
         return securityManager;
@@ -112,6 +115,15 @@ public class ShiroConfig {
         //删除失败的session
         defaultWebSessionManager.setDeleteInvalidSessions(true);
         return defaultWebSessionManager;
+    }
+
+    /**
+     * theamleaf  结合shiro 标签，有效
+     * @return
+     */
+    @Bean
+    public ShiroDialect shiroDialect(){
+        return new ShiroDialect();
     }
     //fimxe
 //

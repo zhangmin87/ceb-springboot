@@ -25,3 +25,5 @@ spring:
        protocol: dubbo
        port: 20800
        threads: 200
+  aop:
+    auto: true

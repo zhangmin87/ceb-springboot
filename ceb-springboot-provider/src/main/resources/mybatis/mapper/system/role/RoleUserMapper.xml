@@ -2,6 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ceb.system.mapper.role.RoleUserMapper">
     <select id="selectRoleByUserId" resultType="java.lang.String">
-       select r.type from U_ROLE r,u_user_role ur where r.id = ur.rid and ur.uid = #{id,jdbcType=BIGHT}
+       select r.type from U_ROLE r,u_user_role ur where r.id = ur.rid and ur.uid = #{id,jdbcType=BIGINT}
     </select>
 </mapper>

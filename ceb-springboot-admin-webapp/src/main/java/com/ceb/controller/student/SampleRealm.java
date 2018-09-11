@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
 import java.util.Date;
+import java.util.Set;
 
 
 /**
@@ -77,7 +78,12 @@ public class SampleRealm extends AuthorizingRealm {
         Long userId = TokenManager.getToken().getId();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         // 根据用户Id查询角色(role)，放入到Authorization 里
-
-        return null;
+        Set<String> stringSet = dubboSuport.roleUserService.getRoleUser(userId);
+        // 根据用户Id
+        authorizationInfo.setRoles(stringSet);
+        // 根据用户ID查询权限(permission),放入到Authorization里
+        Set<String> permission = dubboSuport.permissionService.findPermissionByUserId(userId);
+        authorizationInfo.setStringPermissions(permission);
+        return authorizationInfo;
     }
 }
