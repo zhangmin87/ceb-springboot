@@ -40,6 +40,7 @@
                 <div class="pull-left info">
                     <!--/*@thymesVar id="user" type="com.ceair.cbec.datacenter.system.dto.UserDTO"*/-->
                     <!--<p th:text="${user.username}"></p>-->
+                    <p><shiro:principal property="email"/></p>
                     <a href="#"> <i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -59,6 +60,7 @@
                     </span>
                     </a>
                        <ul class="treeview-menu">
+                           <!--shiro 标签控制 -->
                            <li shiro:hasAnyRoles="888888">
                                <a th:href="@{'/com/user'}"><i class="fa fa-circle-o"></i>用户管理</a>
                            </li>
