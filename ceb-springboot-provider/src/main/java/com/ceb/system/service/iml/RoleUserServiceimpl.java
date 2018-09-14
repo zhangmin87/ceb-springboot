@@ -22,5 +22,15 @@ public class RoleUserServiceimpl implements RoleUserService {
     public Set<String> getRoleUser(Long id) {
         return roleUserMapper.selectRoleByUserId(id);
     }
+
+    @Override
+    public void removeRoleByUser(Long userId ) {
+        roleUserMapper.deleteRoleByUserId(userId);
+    }
+
+    @Override
+    public void saveRoleToUser(Long roleId, Long userId) {
+       roleUserMapper.insertRole(roleId,userId);
+    }
 }
 

@@ -16,4 +16,6 @@ public interface RoleService {
      * @return
      */
     BootrapTablePaginationData<RoleDTO> getAllRole(Pagination pagination);
+
+
 }

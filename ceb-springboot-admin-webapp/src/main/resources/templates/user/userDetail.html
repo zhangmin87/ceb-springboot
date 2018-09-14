@@ -81,21 +81,37 @@
     // 操作
     function operationFormatter(value, row, index, field) {
         var operations = [
-            '<a class="btn btn-success btn-xs"  href="javascript:void(0);" onclick=""><i class="fa fa-edit"></i>编辑</a>'
+            '<a class="btn btn-success btn-xs"  href="javascript:void(0);" onclick="allocateRole(\''+row.id+'\');"><i class="fa fa-edit"></i>编辑</a>'
         ];
         return '<div class="btn-group">' + operations.join('') + '</div>';
     };
     
     // 角色管理
-    function allocateRole() {
+    function allocateRole(id ) {
         // 打开modal
         $("#allocateRoleToUserDialog").modal("show");
-        // 发送ajax
+        $("#allocateRoleToUserForm").append("<div class = 'hidden' id='idHidden'><input type='text' value= "+id +"></div>")
+        //
+    }
+
+    //分配
+    function addRole(row ) {
+        var checkboxArr = [];
+        $("#allocateRoleToUserForm input:checkbox").each(function () {
+            if ($(this).prop("checked") == true) {
+                checkboxArr.push($(this).val());
+            }
+        });
+        var id = $("#idHidden :input").val();
         $.ajax({
-            type:"POST",
-            url: '/admin/system/role/roleCreate',
-            data:
-        })
+            type:"post",
+            traditional: true,
+            data: {"checkboxArr":checkboxArr,"userId":id},
+            url: [[@{/com/role/addRole}]],
+            success:function (data) {
+                alert("成功");
+            }
+        });
     }
 </script>
 </html>

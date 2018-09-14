@@ -6,6 +6,7 @@ import com.ceb.exterior.page.BootrapTablePaginationData;
 import com.ceb.exterior.page.Pagination;
 import com.ceb.system.DTO.RoleDTO;
 import com.ceb.system.mapper.role.RoleMapper;
+import com.ceb.system.mapper.role.RoleUserMapper;
 import com.ceb.system.service.role.RoleService;
 import com.github.pagehelper.ISelect;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
     @Autowired
     private RoleMapper roleMapper;
 
+    @Autowired
+    private RoleUserMapper roleUserMapper;
+
     @Override
     public BootrapTablePaginationData<RoleDTO> getAllRole(Pagination pagination) {
        List<RoleDTO> result = executeQuery(pagination, new ISelect() {
@@ -34,4 +38,6 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
         // 封装成boostrap 分页对象
         return new BootrapTablePaginationData<>(pagination,result);
     }
+
+
 }
